@@ -8,8 +8,6 @@
     "laminas"
   ],
   "homepage": "https://github.com/dimkamonster/laminas-rabbitmq",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require": {
     "php": "^7.1",
     "ext-json": "*",
