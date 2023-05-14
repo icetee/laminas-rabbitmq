@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RabbitMQ\Publisher;
 
 use PhpAmqpLib\Message\AMQPMessage;
 use RabbitMQ\Interfaces\JobInterface;
-use RabbitMQ\Service\RabbitMQ;
+use RabbitMQ\Service\RabbitMQService;
 
 class PubSubQueuePublisher extends WorkQueuePublisher
 {
-    public function push(JobInterface $job, RabbitMQ $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
     {
         $channel = $rabbitMQService->getChannel();
 

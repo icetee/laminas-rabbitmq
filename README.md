@@ -31,16 +31,16 @@ Make sure the module enabled and try an example below.
 <?php
 
 /**
- * @var \RabbitMQ\Service\RabbitMQ $rabbitmqService
- * @var \Interop\Container\ContainerInterface $container
+ * @var \RabbitMQ\Interfaces\RabbitMQServiceInterface $mq
+ * @var \Psr\Container\ContainerInterface $container
  */
 
-$rabbitMQ = $container->get(\RabbitMQ\Service\RabbitMQ::class);
+$mq = $container->get(\RabbitMQ\Interfaces\RabbitMQServiceInterface::class);
 $publisher = new \RabbitMQ\Publisher\WorkQueuePublisher('test_work_queue');
 $job = new \RabbitMQ\Job\Job(['some' => 'data']);
 
-$rabbitMQ->setPublisher($publisher);
-$rabbitMQ->push($job);
+$mq->setPublisher($publisher);
+$mq->push($job);
 ```
 
 ### Receive message
@@ -49,15 +49,15 @@ $rabbitMQ->push($job);
 <?php
 
 /**
- * @var \RabbitMQ\Service\RabbitMQ $rabbitmqService
- * @var \Interop\Container\ContainerInterface $container
+ * @var \RabbitMQ\Interfaces\RabbitMQServiceInterface $mq
+ * @var \Psr\Container\ContainerInterface $container
  */
 
-$rabbitMQ = $container->get(\RabbitMQ\Service\RabbitMQ::class);
+$mq = $container->get(\RabbitMQ\Interfaces\RabbitMQService::class);
 $consumer = new \RabbitMQ\Consumer\WorkQueueConsumer('test_work_queue');
-$rabbitMQ->setConsumer($consumer);
+$mq->setConsumer($consumer);
 
-$rabbitMQ->receive(function (\RabbitMQ\Consumer\Message $message) {
+$mq->receive(function (\RabbitMQ\Consumer\Message $message) {
     echo $message->getBody();
 
     $message->ack();

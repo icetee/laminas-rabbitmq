@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RabbitMQ\Consumer;
 
 use PhpAmqpLib\Message\AMQPMessage;
 
 class Message
 {
-    /**
-     * @var AMQPMessage
-     */
-    protected $message;
-
-    public function __construct(AMQPMessage $message)
-    {
+    public function __construct(
+        protected AMQPMessage $message
+    ) {
         $this->message = $message;
     }
 

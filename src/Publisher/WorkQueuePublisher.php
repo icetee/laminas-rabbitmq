@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RabbitMQ\Publisher;
 
 use PhpAmqpLib\Message\AMQPMessage;
 use RabbitMQ\Interfaces\JobInterface;
 use RabbitMQ\Interfaces\PublisherInterface;
-use RabbitMQ\Service\RabbitMQ;
+use RabbitMQ\Service\RabbitMQService;
 
 class WorkQueuePublisher implements PublisherInterface
 {
@@ -16,7 +18,7 @@ class WorkQueuePublisher implements PublisherInterface
         $this->queueName = $queueName;
     }
 
-    public function push(JobInterface $job, RabbitMQ $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
     {
         $table = $rabbitMQService->getTable();
         $channel = $rabbitMQService->getChannel();
@@ -24,7 +26,7 @@ class WorkQueuePublisher implements PublisherInterface
         $channel->queue_declare($this->queueName, false, true, false, false, false, $table);
 
         $amqpMessage = new AMQPMessage($job->getJsonString(), [
-            'delivery_mode' => RabbitMQ::DELIVERY_MODE,
+            'delivery_mode' => RabbitMQService::DELIVERY_MODE,
         ]);
 
         $channel->basic_publish($amqpMessage, '', $this->queueName);

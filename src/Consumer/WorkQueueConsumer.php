@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RabbitMQ\Consumer;
 
 use PhpAmqpLib\Message\AMQPMessage;
 use RabbitMQ\Interfaces\ConsumerInterface;
-use RabbitMQ\Service\RabbitMQ;
+use RabbitMQ\Service\RabbitMQService;
 
 class WorkQueueConsumer implements ConsumerInterface
 {
-    protected $queueName;
-
-    public function __construct($queueName)
+    public function __construct(
+        protected $queueName
+    )
     {
         $this->queueName = $queueName;
     }
 
-    public function receive(Callable $callback, RabbitMQ $rabbitMQService)
+    public function receive(Callable $callback, RabbitMQService $rabbitMQService)
     {
         $channel = $rabbitMQService->getChannel();
 

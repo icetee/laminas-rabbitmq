@@ -1,30 +1,22 @@
 <?php
 
-namespace RabbitMQ;
+declare(strict_types=1);
 
-use Psr\Container\ContainerInterface;
-use RabbitMQ\Service\RabbitMQ;
+namespace RabbitMQ;
 
 class Module
 {
-    public function getConfig()
-    {
-        return include __DIR__ . '/../config/module.config.php';
-    }
-
     /**
+     * Retrieve default laminas-db configuration for laminas-mvc context.
+     *
      * @return array
      */
-    public function getServiceConfig()
+    public function getConfig()
     {
-        return [
-            'factories' => [
-                RabbitMQ::class => function (ContainerInterface $container) {
-                    $config = $container->get('config');
+        $provider = new ConfigProvider();
 
-                    return new RabbitMQ($config['rabbitmq']);
-                },
-            ],
+        return [
+            'service_manager' => $provider->getDependencies(),
         ];
     }
 }

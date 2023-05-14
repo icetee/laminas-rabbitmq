@@ -1,21 +1,38 @@
 {
-  "name": "dimkamonster/laminas-rabbitmq",
+  "name": "icetee/laminas-rabbitmq",
   "description": "RabbitMQ module for Laminas",
   "type": "module",
   "license": "MIT",
+  "config": {
+    "sort-packages": true
+  },
   "keywords": [
     "rabbitmq",
     "laminas"
   ],
-  "homepage": "https://github.com/dimkamonster/laminas-rabbitmq",
+  "homepage": "https://github.com/icetee/laminas-rabbitmq",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^8.0",
-    "laminas/laminas-servicemanager-di": "^3",
+    "php": "~8.1",
     "php-amqplib/php-amqplib": "^3"
   },
   "psr-4": {
     "RabbitMQ\\": "src/"
+  },
+  "extra": {
+    "rabbitmq": {
+      "config-provider": "RabbitMQ\\ConfigProvider"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit --colors=always",
+    "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
   }
 }
