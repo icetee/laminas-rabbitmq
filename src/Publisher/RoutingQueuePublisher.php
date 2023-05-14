@@ -10,16 +10,16 @@ use RabbitMQ\Service\RabbitMQService;
 
 class RoutingQueuePublisher extends WorkQueuePublisher
 {
-    protected $serenity;
-
-    public function __construct($queueName, $serenity)
-    {
+    public function __construct(
+        $queueName,
+        protected $serenity
+    ) {
         parent::__construct($queueName);
 
         $this->serenity = $serenity;
     }
 
-    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService): void
     {
         $channel = $rabbitMQService->getChannel();
 

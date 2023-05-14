@@ -10,16 +10,16 @@ use RabbitMQ\Service\RabbitMQService;
 
 class PriorityQueuePublisher extends WorkQueuePublisher
 {
-    protected $priority;
-
-    public function __construct($queueName, $priority)
-    {
+    public function __construct(
+        $queueName,
+        protected $priority
+    ) {
         parent::__construct($queueName);
 
         $this->priority = $priority;
     }
 
-    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService): void
     {
         $table = $rabbitMQService->getTable();
         $channel = $rabbitMQService->getChannel();

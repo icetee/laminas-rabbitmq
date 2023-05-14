@@ -8,5 +8,5 @@ use RabbitMQ\Service\RabbitMQService;
 
 interface ConsumerInterface
 {
-    public function receive(Callable $callback, RabbitMQService $rabbitMQService);
+    public function receive(Callable $callback, RabbitMQService $rabbitMQService): void;
 }

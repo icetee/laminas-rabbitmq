@@ -22,11 +22,6 @@
       "RabbitMQ\\": "src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "RabbitMQ\\Tests\\": "tests/src/"
-    }
-  },
   "extra": {
     "laminas": {
       "module": "RabbitMQ",

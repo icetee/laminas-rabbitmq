@@ -10,7 +10,7 @@ use RabbitMQ\Service\RabbitMQService;
 
 class PubSubQueuePublisher extends WorkQueuePublisher
 {
-    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService): void
     {
         $channel = $rabbitMQService->getChannel();
 

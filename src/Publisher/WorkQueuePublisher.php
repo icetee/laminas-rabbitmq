@@ -11,14 +11,13 @@ use RabbitMQ\Service\RabbitMQService;
 
 class WorkQueuePublisher implements PublisherInterface
 {
-    protected $queueName;
-
-    public function __construct($queueName)
-    {
+    public function __construct(
+        protected $queueName
+    ) {
         $this->queueName = $queueName;
     }
 
-    public function push(JobInterface $job, RabbitMQService $rabbitMQService)
+    public function push(JobInterface $job, RabbitMQService $rabbitMQService): void
     {
         $table = $rabbitMQService->getTable();
         $channel = $rabbitMQService->getChannel();

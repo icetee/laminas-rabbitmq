@@ -17,7 +17,7 @@ class WorkQueueConsumer implements ConsumerInterface
         $this->queueName = $queueName;
     }
 
-    public function receive(Callable $callback, RabbitMQService $rabbitMQService)
+    public function receive(Callable $callback, RabbitMQService $rabbitMQService): void
     {
         $channel = $rabbitMQService->getChannel();
 

@@ -14,15 +14,12 @@ class Message
         $this->message = $message;
     }
 
-    /**
-     * @return string
-     */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->message->body;
     }
 
-    public function ack()
+    public function ack(): void
     {
         $this->message->delivery_info['channel']->basic_ack(
             $this->message->delivery_info['delivery_tag']
