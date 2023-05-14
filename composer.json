@@ -11,8 +11,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^7.1",
-    "laminas/laminas-servicemanager-di": "^1.0",
+    "php": "^8.0",
+    "laminas/laminas-servicemanager-di": "^3",
     "php-amqplib/php-amqplib": "^3"
   },
   "psr-4": {
