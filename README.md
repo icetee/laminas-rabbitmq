@@ -3,7 +3,7 @@ Laminas Module for RabbitMQ
 
 ## Install
 
-`composer require dimkamonster/laminas-rabbitmq`
+`composer require icetee/laminas-rabbitmq`
 
 
 ## Configure
@@ -62,4 +62,11 @@ $mq->receive(function (\RabbitMQ\Consumer\Message $message) {
 
     $message->ack();
 });
+```
+
+### Docker
+
+```
+docker build --tag laminas-rabbitmq:latest .
+docker run -it --name laminas-rabbitmq --rm -v $(pwd):/app laminas-rabbitmq:latest sh
 ```
