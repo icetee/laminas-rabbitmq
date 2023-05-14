@@ -1,7 +1,7 @@
 {
   "name": "icetee/laminas-rabbitmq",
   "description": "RabbitMQ module for Laminas",
-  "type": "module",
+  "type": "library",
   "license": "MIT",
   "config": {
     "sort-packages": true
@@ -22,8 +22,14 @@
       "RabbitMQ\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "RabbitMQ\\Tests\\": "tests/src/"
+    }
+  },
   "extra": {
-    "rabbitmq": {
+    "laminas": {
+      "module": "RabbitMQ",
       "config-provider": "RabbitMQ\\ConfigProvider"
     }
   },
