@@ -77,7 +77,7 @@ class RabbitMQService implements RabbitMQServiceInterface
         return $this->connection;
     }
 
-    public function __destruct(): void
+    public function __destruct()
     {
         $this->channel->close();
         $this->connection->close();

@@ -34,7 +34,7 @@ class Job implements JobInterface
         return $this->dataArray;
     }
 
-    public function getJsonString(): string
+    public function getJsonString(): string|bool
     {
         return $this->dataJsonString;
     }

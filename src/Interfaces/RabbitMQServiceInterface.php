@@ -35,5 +35,5 @@ interface RabbitMQServiceInterface
 
     public function getConnection(): AMQPStreamConnection;
 
-    public function __destruct(): void;
+    public function __destruct();
 }

@@ -6,6 +6,6 @@ namespace RabbitMQ\Interfaces;
 
 interface JobInterface
 {
-    public function getJsonString(): string;
+    public function getJsonString(): string|bool;
     public function getJson(): array;
 }
