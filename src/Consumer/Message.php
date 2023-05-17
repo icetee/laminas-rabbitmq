@@ -21,8 +21,11 @@ class Message
 
     public function ack(): void
     {
-        $this->message->delivery_info['channel']->basic_ack(
-            $this->message->delivery_info['delivery_tag']
-        );
+        $this->message->ack();
+    }
+
+    public function nack(): void
+    {
+        $this->message->nack();
     }
 }
